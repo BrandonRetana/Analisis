@@ -117,6 +117,30 @@ int inefficientSubarrayDivision(int chocolate[], int n, int m, int d) {
 return counter; 
 }
 
+int efficientSubarrayDivision(int chcolate[], int n, int m, int d) {
+    int inicial = 0;
+    int respuesta = 0;
+    int suma = 0;
+    int control = 1;
+
+    for (int i = 0; i < n; i++) {
+        suma += chcolate[inicial];
+
+        if (control == m && suma == d) {
+            respuesta+=1;
+            suma -= chcolate[inicial];
+            inicial +=1;
+        }else{ if (control == m) {
+            suma -= chcolate[inicial];
+            inicial +=1;
+        }else {
+                control+=1;
+            }
+        }
+    }
+    return respuesta;
+}
+
 
 void subarrayDivisionTest() {
     int n;
@@ -129,6 +153,7 @@ void subarrayDivisionTest() {
     }
     cin>>m>>d;
     cout<<inefficientSubarrayDivision(chocoloate,n,d,m)<<endl;
+    cout<<efficientSubarrayDivision(chocoloate,n,d,m)<<endl;
 }
 
 //------------------------------------------------------------The minion game------------------------------------------------------------ 
