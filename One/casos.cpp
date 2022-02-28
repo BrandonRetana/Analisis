@@ -7,7 +7,8 @@ using namespace std;
 
 //------------------------------------------------------------Triplets problem------------------------------------------------------------
 
-/* */
+/* This version of the algorithm is less efficient because it contains a for loop and 6 comparisons which increases execution time.*/
+
 int* inefficientTriplets(int aliceArray[], int bobArray[]) {
     int* resultArray = new int[2];
 
@@ -21,6 +22,8 @@ int* inefficientTriplets(int aliceArray[], int bobArray[]) {
     } 
 return resultArray;  
 }
+
+//This version of the algorithm is more efficient because there are no loops and there are only 3 comparisons
 
 int* efficientTriplets(int aliceArray[], int bobArray[]) {
     int* resultArray = new int[2];
@@ -74,6 +77,9 @@ void testTriplets() {
 }
 
 //------------------------------------------------------------Time Conversion------------------------------------------------------------ 
+
+//This version of the algorithm is inefficient because it contains 4 comparisons.
+
 string inefficientTimeConversion(string s) {
     int timeValue = stoi(s.substr(0,2));
     string partsOfTime = s.substr(3,5);
@@ -92,6 +98,8 @@ string inefficientTimeConversion(string s) {
     result+=to_string(timeValue)+":"+partsOfTime;
 return result;
 }
+
+//This version of the comparison algorithm is more efficient because it only contains two comparisons
 
 string efficientTimeConversion(string s) {
     int timeValue = stoi(s.substr(0,2));
@@ -125,6 +133,8 @@ void timeCoversionTest() {
 
 //------------------------------------------------------------Subarray Division------------------------------------------------------------ 
 
+//This version of the algorithm is inefficient because it has two loops which increases the comparisons and makes the cost quadratic.
+
 int inefficientSubarrayDivision(int chocolate[], int n, int m, int d) {
     int counter = 0;
     for (int i = 0; i < n ; i++) {
@@ -136,6 +146,7 @@ int inefficientSubarrayDivision(int chocolate[], int n, int m, int d) {
     }
 return counter; 
 }
+//This version of the algorithm is efficient because it has one loop and fewer comparisons than the other algorithm. Its cost is linear.
 
 int efficientSubarrayDivision(int s[], int n, int m, int d) {
     int result = 0; 
