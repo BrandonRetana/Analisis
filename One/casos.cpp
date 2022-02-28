@@ -108,7 +108,7 @@ void timeCoversionTest() {
 int inefficientSubarrayDivision(int chocolate[], int n, int m, int d) {
     int counter = 0;
     for (int i = 0; i < n ; i++) {
-        for (int j = i; j <= m; j++) {
+        for (int j = i+1; j < m; j++) {
             if (chocolate[i]+chocolate[j]==d) {
                 counter++;
             }
@@ -117,43 +117,35 @@ int inefficientSubarrayDivision(int chocolate[], int n, int m, int d) {
 return counter; 
 }
 
-int efficientSubarrayDivision(int chcolate[], int n, int m, int d) {
-    int inicial = 0;
-    int respuesta = 0;
-    int suma = 0;
-    int control = 1;
-
+int efficientSubarrayDivision(int s[], int n, int m, int d) {
+    int result = 0; 
+    int sum = 0;
     for (int i = 0; i < n; i++) {
-        suma += chcolate[inicial];
-
-        if (control == m && suma == d) {
-            respuesta+=1;
-            suma -= chcolate[inicial];
-            inicial +=1;
-        }else{ if (control == m) {
-            suma -= chcolate[inicial];
-            inicial +=1;
-        }else {
-                control+=1;
+        sum += s[i];
+        if (i >= m-1) {
+            if (sum == d) {
+                result++;
             }
-        }
+            sum-= s[i-(m-1)];
+        }        
     }
-    return respuesta;
+    return result;
 }
 
 
 void subarrayDivisionTest() {
-    int n;
-    int d;
-    int m;
-    cin>>n;
-    int* chocoloate = new int[n];
-    for (int i = 0; i < n; i++) {
-        cin>>chocoloate[i];
-    }
-    cin>>m>>d;
-    cout<<inefficientSubarrayDivision(chocoloate,n,d,m)<<endl;
-    cout<<efficientSubarrayDivision(chocoloate,n,d,m)<<endl;
+    int s[5] = {1, 2, 1, 3, 2};
+    int n = 5;
+    int m = 2;
+    int d = 2;
+
+    cout<<inefficientSubarrayDivision(s,n,m,d)<<endl;
+    cout<<efficientSubarrayDivision(s,n,m,d)<<endl;
+
+    int s2[5] = {1, 1, 3, 4, 5};
+
+    cout<<inefficientSubarrayDivision(s2,n,m,d)<<endl;
+    cout<<efficientSubarrayDivision(s2,n,m,d)<<endl;
 }
 
 //------------------------------------------------------------The minion game------------------------------------------------------------ 
@@ -190,7 +182,7 @@ void minionGameTest() {
 int main () {
     //timeCoversionTest();
     //testTriplets();
-    //subarrayDivisionTest();
+    subarrayDivisionTest();
     //minionGameTest();
 return 0;
 }
