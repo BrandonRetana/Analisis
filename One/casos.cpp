@@ -1,6 +1,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include <cmath>
+#include <unordered_map>
 using namespace std;
 
 
@@ -149,12 +150,12 @@ void subarrayDivisionTest() {
 }
 
 //------------------------------------------------------------The minion game------------------------------------------------------------ 
-string minionGame(string word) {
+string minionGame(string term) {
     int kevinScore = 0;
     int stuartScore = 0;
-    int size = word.length();
+    int size = term.length();
     for (int i = 0; i < size; i++) {
-        if (word[i]=='A' || word[i]=='E' || word[i]=='I' || word[i]=='O' || word[i]=='U') {
+        if (term[i]=='A' || term[i]=='E' || term[i]=='I' || term[i]=='O' || term[i]=='U') {
             kevinScore += size-i;
         }
         else {
@@ -179,10 +180,76 @@ void minionGameTest() {
     cout<<minionGame(word)<<endl;
 }
 
+//------------------------------------------------------------ Cipher ------------------------------------------------------------ 
+string ltrim(const string &);
+string rtrim(const string &);
+vector<string> split(const string &);
+
+string cipher(int k, int n, string s) {
+    vector<char> result(n);
+    result[0] = s[0]-48;
+
+    for (int i = 1; i < k; i++) {
+        result[i] = s[i-1] ^ s[i];
+    }
+    char aux;
+    for (int i = k; i < n; i++) {
+        aux = '0';
+        for (int j = i-(k-1); j < i; j++) {
+            aux = aux ^ result[j];
+        }
+        result[i] = aux ^ s[i];
+    }
+    string final_result = "";
+    for (int i = 0; i < n; i++) {
+        final_result += result[i]+48;
+    }
+    return final_result;
+}
+
+void cipherTest() {
+    int n = 10;
+    int k = 3;
+    string bin = "1110011011";
+
+    cout<<cipher(k,n,bin)<<endl;
+}
+
+//------------------------------------------------------------ Pairs ------------------------------------------------------------ 
+int pairs(vector<int> arr, int k) {
+    int counter = 0;
+    sort(arr.begin(), arr.end());
+    unordered_map<int, int> hash;
+
+    for (int i = 0; i < arr.size(); i++) {
+        int target = arr[i]-k;
+        hash.insert(make_pair(arr[i], target));
+        if (hash.find(target) == hash.end()) {
+            counter+=0;
+        }
+        else {
+            counter+=1;
+        }
+        
+    }
+    return counter;
+}
+
+void pairsTest() {
+    vector<int> arr1 = {1, 3, 5, 8, 6, 4, 2};
+    vector<int> arr2 = {1, 5, 3, 4, 2};
+
+    cout<<pairs(arr1, 2)<<endl;
+    cout<<pairs(arr2, 2)<<endl;
+}
+
+ 
 int main () {
+    //pairsTest();
+    //cipherTest();
     //timeCoversionTest();
     //testTriplets();
-    subarrayDivisionTest();
+    //subarrayDivisionTest();
     //minionGameTest();
 return 0;
 }
