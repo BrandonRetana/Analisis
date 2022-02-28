@@ -149,18 +149,18 @@ return counter;
 //This version of the algorithm is efficient because it has one loop and fewer comparisons than the other algorithm. Its cost is linear.
 
 int efficientSubarrayDivision(int s[], int n, int m, int d) {
-    int result = 0; 
-    int sum = 0;
+    int counter = 0; 
+    int suma = 0;
     for (int i = 0; i < n; i++) {
-        sum += s[i];
+        suma += s[i];
         if (i >= m-1) {
-            if (sum == d) {
-                result++;
+            if (suma == d) {
+                counter++;
             }
-            sum-= s[i-(m-1)];
+            suma-= s[i-(m-1)];
         }        
     }
-    return result;
+    return counter;
 }
 
 
