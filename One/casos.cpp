@@ -6,6 +6,8 @@ using namespace std;
 
 
 //------------------------------------------------------------Triplets problem------------------------------------------------------------
+
+/* */
 int* inefficientTriplets(int aliceArray[], int bobArray[]) {
     int* resultArray = new int[2];
 
@@ -42,22 +44,33 @@ return resultArray;
 }
 
 void testTriplets() {
-    int aliceArray[3];
-    int bobArray[3]; 
+    int aliceArray[3] = {5, 6, 7};
+    int bobArray[3] = {3, 6, 10}; 
+    cout<<"Testing triplets problem\n"<<"aliceArray = 5 6 7\n"<<"bobArray = 3 6 10"<<endl;
 
-    cout<<"Ingrese tres numeros para cada array"<<endl;
-    for (int i = 0; i < 3; i++) {
-        cin>>aliceArray[i];
-    }
-    for (int i = 0; i < 3; i++) {
-        cin>>bobArray[i];
-    }
-    
+    cout<<endl<<"ineffcienteTriplets: "<<endl;
+
     int* result = inefficientTriplets(aliceArray, bobArray);
-    cout<<"Alicia score: "<<result[0]<<" Bob score: "<<result[1]<<endl;
+    cout<<"Alicia score: "<<result[0]<<" Bob score: "<<result[1]<<endl<<endl;
+
+    cout<<"effcienteTriplets: "<<endl;
 
     int* resultTwo = efficientTriplets(aliceArray, bobArray);
-    cout<<"Alicia score: "<<resultTwo[0]<<" Bob score: "<<resultTwo[1]<<endl;
+    cout<<"Alicia score: "<<resultTwo[0]<<" Bob score: "<<resultTwo[1]<<endl<<endl;
+
+    int aliceArray2[3] = {17, 28, 30};
+    int bobArray2[3] = {99, 16, 8}; 
+    cout<<"Second test\n"<<"aliceArray = 17 28 30\n"<<"bobArray = 99 16 8"<<endl;
+
+    cout<<endl<<"ineffcienteTriplets: "<<endl;
+
+    int* result2 = inefficientTriplets(aliceArray2, bobArray2);
+    cout<<"Alicia score: "<<result2[0]<<" Bob score: "<<result2[1]<<endl<<endl;
+
+    cout<<"effcienteTriplets: "<<endl;
+
+    int* resultTwo2 = efficientTriplets(aliceArray2, bobArray2);
+    cout<<"Alicia score: "<<resultTwo2[0]<<" Bob score: "<<resultTwo2[1]<<endl;
 }
 
 //------------------------------------------------------------Time Conversion------------------------------------------------------------ 
@@ -97,11 +110,17 @@ return result;
 }
 
 void timeCoversionTest() {
-    string time;
-    cout<<"Ingrese la hora en formato: hh:mm:ssAM/PM"<<endl;
-    cin>>time;
-    cout<<inefficientTimeConversion(time)<<endl;
-    cout<<efficientTimeConversion(time)<<endl;
+    string time = "07:05:45PM";
+    cout<<"Test time conversion\n"<<"testTime = 07:05:45PM"<<endl<<endl;
+
+    cout<<"inefficientTimeConversion \n" <<inefficientTimeConversion(time)<<endl<<endl;
+    cout<<"efficientTimeConversion \n"<<efficientTimeConversion(time)<<endl<<endl;
+
+    cout<<"secondTest time conversion\n"<<"testTime = 12:05:47AM"<<endl<<endl;
+    time = "12:05:47AM";
+
+    cout<<"inefficientTimeConversion \n" <<inefficientTimeConversion(time)<<endl<<endl;
+    cout<<"efficientTimeConversion \n"<<efficientTimeConversion(time)<<endl<<endl;
 }
 
 //------------------------------------------------------------Subarray Division------------------------------------------------------------ 
@@ -109,7 +128,7 @@ void timeCoversionTest() {
 int inefficientSubarrayDivision(int chocolate[], int n, int m, int d) {
     int counter = 0;
     for (int i = 0; i < n ; i++) {
-        for (int j = i+1; j < m; j++) {
+        for (int j = i+1; j <= m; j++) {
             if (chocolate[i]+chocolate[j]==d) {
                 counter++;
             }
@@ -138,15 +157,17 @@ void subarrayDivisionTest() {
     int s[5] = {1, 2, 1, 3, 2};
     int n = 5;
     int m = 2;
-    int d = 2;
+    int d = 3;
+    cout<<"testing subarray division \n"<<"input : \n"<<" n = 5 \n m = 2 \n d = 3 \n int s[] = 1 2 1 3 2"<<endl;
 
-    cout<<inefficientSubarrayDivision(s,n,m,d)<<endl;
-    cout<<efficientSubarrayDivision(s,n,m,d)<<endl;
+    cout<<"inefficientSubarrayDivision \n"<<inefficientSubarrayDivision(s,n,m,d)<<endl<<endl;
+    cout<<"efficientSubarrayDivision \n"<<efficientSubarrayDivision(s,n,m,d)<<endl;
 
     int s2[5] = {1, 1, 3, 4, 5};
 
-    cout<<inefficientSubarrayDivision(s2,n,m,d)<<endl;
-    cout<<efficientSubarrayDivision(s2,n,m,d)<<endl;
+    cout<<"testing subarray division \n"<<"input : \n"<<" n = 5 \n m = 2 \n d = 3 \n int s[] = 1 1 3 4 5"<<endl;
+    cout<<"inefficientSubarrayDivision \n"<<inefficientSubarrayDivision(s2,n,m,d)<<endl;
+    cout<<"efficientSubarrayDivision \n"<<efficientSubarrayDivision(s2,n,m,d)<<endl;
 }
 
 //------------------------------------------------------------The minion game------------------------------------------------------------ 
@@ -175,9 +196,14 @@ return "";
 }
 
 void minionGameTest() {
-    string word;
-    cin>>word;
-    cout<<minionGame(word)<<endl;
+    cout<<"Testing minionGame"<<endl;
+    string word = "BANANA";
+
+    cout<<"Test BANANA \n "<<minionGame(word)<<endl<<endl;
+
+    word = "CARLOS";
+
+    cout<<"Test CARLOS \n"<<minionGame(word)<<endl<<endl;
 }
 
 //------------------------------------------------------------ Cipher ------------------------------------------------------------ 
@@ -208,11 +234,22 @@ string cipher(int k, int n, string s) {
 }
 
 void cipherTest() {
-    int n = 10;
-    int k = 3;
-    string bin = "1110011011";
+    int n = 7;
+    int k = 4;
 
-    cout<<cipher(k,n,bin)<<endl;
+    cout<<"testing cipher"<<endl<<endl;
+
+    string bin = "1110100110";
+
+    cout<<"Test: 1110100110"<<endl;
+    cout<<"Result: "<<cipher(k,n,bin)<<endl;
+    bin = "1110001";
+    n = 6;
+    k = 2;
+
+    cout<<"Test: 1110001"<<endl;
+    cout<<"Result: "<<cipher(k,n,bin)<<endl;
+    
 }
 
 //------------------------------------------------------------ Pairs ------------------------------------------------------------ 
@@ -236,20 +273,24 @@ int pairs(vector<int> arr, int k) {
 }
 
 void pairsTest() {
+
+    cout<<"Testing pairs"<<endl<<endl;
+
+
     vector<int> arr1 = {1, 3, 5, 8, 6, 4, 2};
     vector<int> arr2 = {1, 5, 3, 4, 2};
 
-    cout<<pairs(arr1, 2)<<endl;
-    cout<<pairs(arr2, 2)<<endl;
+    cout<<"Test arr1 = {1, 3, 5, 8, 6, 4, 2} \n"<<pairs(arr1, 2)<<endl;
+    cout<<"Test arr2 = {1, 5, 3, 4, 2} \n"<<pairs(arr2, 2)<<endl;
 }
 
  
 int main () {
-    //pairsTest();
-    //cipherTest();
-    //timeCoversionTest();
-    //testTriplets();
-    //subarrayDivisionTest();
-    //minionGameTest();
+    testTriplets();
+    timeCoversionTest();
+    subarrayDivisionTest();
+    minionGameTest();
+    cipherTest();
+    pairsTest(); 
 return 0;
 }
