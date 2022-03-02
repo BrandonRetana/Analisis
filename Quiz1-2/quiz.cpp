@@ -34,11 +34,45 @@ public:
 };
 
 
+class Media {
+protected:
+	string extension;
+	string nombre = "Desconocido";
+	string fecha = "Desconocido";
+	string autor = "Desconocido";
+	string url;
+
+public:
+	Media(string extension, string nombre, string fecha, string autor, string url) {
+		this->extension = extension;
+		this->nombre = nombre;
+		this->fecha = fecha;
+		this->autor = autor;
+		this->url = url;
+	};
+	string getInfo() {
+		string stringFinal = "Tipo: ";
+		if (extension == "jpg") {
+			stringFinal+="Imagen \n";
+		}else {if (extension == "mp4") {
+			stringFinal+="Video \n";
+		}else {if (extension == "mp3") {
+			stringFinal+= "Audio";			
+				}	
+			}	
+		}
+		stringFinal+="Nombre: "+nombre+"\n"+"Fecha: "+fecha+"\n"+"Autor: "+autor+"\n"+"URL: "+url+"\n";
+		return stringFinal;
+	}
+	~Media();
+};
+
+
 class NoticiaDigital: public Noticia {
 protected:
-	vector<string> lista;
+	vector<Media*> lista;
 public:
-	NoticiaDigital(string titulo, string fecha, string reportero, vector<string> lista){
+	NoticiaDigital(string titulo, string fecha, string reportero, vector<Media*> lista){
 		this->titulo = titulo;
 		this->fecha = fecha;
 		this->reportero = reportero;
@@ -49,10 +83,11 @@ public:
 
 	string getInfo() {
 		string finalString = "";
-		finalString+="Título: "+titulo+"\n"+"Fecha: "+fecha+"\n"+"Reportero: "+reportero+"\n"+"Media: "+"\n";
-		for(string element: lista) {
-			finalString+=element+"\n";
+		finalString+="Título: "+titulo+"\n"+"Fecha: "+fecha+"\n"+"Reportero: "+reportero+"\n"+"\nMedia: "+"\n";
+		for (Media* element: lista) {
+			finalString+= element->getInfo();
 		}
+		
 		return finalString;
 	}
 };
@@ -79,7 +114,9 @@ public:
 
 int main() {
 	vector<Noticia *> noticias;
-	vector<string> lista = {"https://www.cultture.com/pics/2020/10/nota-de-la-muerte-10-cosas-que-debes-saber-sobre-l-2.jpg", "https://youtu.be/wOKmqDwdvIw", "https://soundcloud.com/equimanthornn/death-note-ls-theme?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"};
+	vector<Media*> lista;
+
+	lista.push_back(new Media("jpg","L","12/3/2021","Kira","https://sm.ign.com/t/ign_latam/screenshot/default/dnl_qxar.1280.jpg"));
 
 	noticias.push_back(new NoticiaPaper("Guerra", "12/12/2021", "Juan Perez", "C:\\usr\\branrch\\desktop\\image.png"));
 	noticias.push_back(new NoticiaDigital("L ataca de nuevo", "13/5/2022", "Light Yagami", lista));
