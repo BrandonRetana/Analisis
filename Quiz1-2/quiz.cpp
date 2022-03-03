@@ -64,7 +64,7 @@ public:
 		stringFinal+="Nombre: "+nombre+"\n"+"Fecha: "+fecha+"\n"+"Autor: "+autor+"\n"+"URL: "+url+"\n\n";
 		return stringFinal;
 	}
-	~Media();
+	~Media(){};
 };
 
 
@@ -86,6 +86,7 @@ public:
 		finalString+="Título: "+titulo+"\n"+"Fecha: "+fecha+"\n"+"Reportero: "+reportero+"\n"+"\nMedia: "+"\n";
 		for (Media* element: lista) {
 			finalString+= element->getInfo();
+			delete element;
 		}
 		
 		return finalString;
