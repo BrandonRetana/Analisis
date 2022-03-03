@@ -57,11 +57,11 @@ public:
 		}else {if (extension == "mp4") {
 			stringFinal+="Video \n";
 		}else {if (extension == "mp3") {
-			stringFinal+= "Audio";			
+			stringFinal+= "Audio \n";			
 				}	
 			}	
 		}
-		stringFinal+="Nombre: "+nombre+"\n"+"Fecha: "+fecha+"\n"+"Autor: "+autor+"\n"+"URL: "+url+"\n";
+		stringFinal+="Nombre: "+nombre+"\n"+"Fecha: "+fecha+"\n"+"Autor: "+autor+"\n"+"URL: "+url+"\n\n";
 		return stringFinal;
 	}
 	~Media();
@@ -117,6 +117,9 @@ int main() {
 	vector<Media*> lista;
 
 	lista.push_back(new Media("jpg","L","12/3/2021","Kira","https://sm.ign.com/t/ign_latam/screenshot/default/dnl_qxar.1280.jpg"));
+	lista.push_back(new Media("mp4","The World","12/3/2020","meena","https://youtu.be/wOKmqDwdvIw"));
+	lista.push_back(new Media("mp3","Death Note OTS","2006","TBG22","https://soundcloud.com/thebadguy22/sets/death-note-ost?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"));
+
 
 	noticias.push_back(new NoticiaPaper("Guerra", "12/12/2021", "Juan Perez", "C:\\usr\\branrch\\desktop\\image.png"));
 	noticias.push_back(new NoticiaDigital("L ataca de nuevo", "13/5/2022", "Light Yagami", lista));
