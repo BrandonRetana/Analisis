@@ -14,13 +14,13 @@ int costo(int N, int M, int x[], int y[]){
     }
     int yFirst = rows+N*columns;
     int xFisrt = columns+M*rows;
-//    cout<<xFisrt<<endl<<yFirst<<endl;
-return ((yFirst+xFisrt)-abs(yFirst-xFisrt))/2;
+    cout<<xFisrt<<endl<<yFirst<<endl;
+return xFisrt > yFirst? yFirst: xFisrt;
 }
 
 int main() {
-    int y[] = {3,4,6,0};
+    int y[] = {3,4,6,0,1,1,1,1};
     int x[] = {7,5,1,6,0};
-    cout<<costo(4, 5, x, y)<<endl;
+    cout<<costo(8, 5, x, y)<<endl;
 return 0;
 }
