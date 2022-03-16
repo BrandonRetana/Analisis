@@ -14,7 +14,6 @@ int costo(int N, int M, int x[], int y[]){
     }
     int yFirst = rows+N*columns;
     int xFisrt = columns+M*rows;
-    cout<<xFisrt<<endl<<yFirst<<endl;
 return xFisrt > yFirst? yFirst: xFisrt;
 }
 
