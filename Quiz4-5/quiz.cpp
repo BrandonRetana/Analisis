@@ -13,7 +13,7 @@ O grande:
 O(n+k)
 
 Loop invariant:
-En la linea 17 y 18
+En la linea 24 y 27
 Las condiciones del loop invariant son:
 rows <= que la sumatoria desde i = 0 hasta N-1 de y[i]
 columns <= que la sumatoria desde i = 0 hasta M-1 de x[i]
@@ -34,7 +34,7 @@ return xFirst > yFirst? yFirst: xFirst;
 //--------------------------------------------------------------RadixSort--------------------------------------------------------------
 /* 
 Funcion:
-f(n) = 14n(584k+12)
+f(n) = 17m+33mn+9
 
 O grande:
 O(nk)
