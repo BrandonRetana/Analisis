@@ -77,7 +77,7 @@ void printArr(int* arr, int n) {
 int main() {
     int y[] = {7,5,1,6};
     int x[] = {3,4,6};
-    cout<<"Costo:\n"<<"x = 7,5,1,6,0\n"<<"y = 3,4,6,0\n"<<"Salida: "<<endl;
+    cout<<"Costo:\n"<<"x = 7,5,1,6\n"<<"y = 3,4,6\n"<<"Salida: "<<endl;
     cout<<costo(5, 4, x, y)<<endl;
     
     cout<<"RadixSort:\n"<<"arr = 201,10,132,55,7 \n"<<"Salida:"<<endl;
