@@ -113,10 +113,4 @@ TrieNode* remove(TrieNode* root, string key, int depth = 0)
 
 	return root;
 }
-
-// Driver
-
-
-
-
 #endif // TRIE_H
