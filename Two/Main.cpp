@@ -10,7 +10,7 @@ void readWords(string line, int linea){
     for (char character: line) {
             character = tolower(character);
             int ascii = int(character);
-            if (!((ascii>=97 && ascii<=122) || character == 'ñ' || character == 'á' || character == 'é' || character == 'í' || character == 'ó' || character == 'ú'|| character == 'ü')){
+            if (!((ascii>=97 && ascii<=122) || character == int('ñ') || character == int('á') || character == int('é') || character == int('í') || character == int('ó') || character == int('ú')|| character == int('ü'))){
                 if (!(word == "")){
                     insert(root, word, linea);
                 }
@@ -42,8 +42,9 @@ void abrirArchivo(string archivo){
 
 
 int main() {
-	string warPeace = "WarPeace.txt";
-	abrirArchivo(warPeace);
+	setlocale(LC_ALL, "spanish");
+	string text = "WarPeace.txt";
+	abrirArchivo(text);
 	searchLine(root, "dependence");
 	return 0;
 }
