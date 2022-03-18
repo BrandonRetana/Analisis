@@ -2,27 +2,48 @@
 #include "Trie.h"
 using namespace std;
 
+struct TrieNode* root = getNode();
 
-int main()
-{
-	// Input keys (use only 'a' through 'z'
-	// and lower case)
-	string keys[] = { "the", "a", "there",
-					"answer", "any", "by",
-					"bye", "their", "hero", "heroplane" };
-	int n = sizeof(keys) / sizeof(keys[0]);
 
-	struct TrieNode* root = getNode();
+void readWords(string line, int linea){
+	string word;
+    for (char character: line) {
+            character = tolower(character);
+            int ascii = int(character);
+            if (!((ascii>=97 && ascii<=122) || character == 'ñ' || character == 'á' || character == 'é' || character == 'í' || character == 'ó' || character == 'ú'|| character == 'ü')){
+                if (!(word == "")){
+                    insert(root, word, linea);
+                }
+                    word = "";
+            } else {
+                word+=character;
+            }
+        }
+    }
 
-	// Construct trie
-	for (int i = 0; i < n; i++)
-		insert(root, keys[i]);
+void abrirArchivo(string archivo){
+    string text;
+    ifstream ifs(archivo);
+    if(ifs.fail()) {
+        throw runtime_error("Falló al abrir el archivo");
+        }
+    else{
+        int contador = 0;
+        while (!ifs.eof()){
+            getline(ifs, text);
+            if(!(text.size()==0)){
+                readWords(text, contador);
+                }
+				contador++;
+            }
+        }
+    }
 
-	// Search for different keys
-	search(root, "the") ? cout << "Yes\n" : cout << "No\n";
-	search(root, "these") ? cout << "Yes\n" : cout << "No\n";
 
-	remove(root, "heroplane");
-	search(root, "hero") ? cout << "Yes\n" : cout << "No\n";
+
+int main() {
+	string warPeace = "WarPeace.txt";
+	abrirArchivo(warPeace);
+	searchLine(root, "dependence");
 	return 0;
 }
