@@ -8,13 +8,15 @@ class Trie{
 public:
 	Trie();
     struct TrieNode* getNode(void);
-	void insert(struct TrieNode* root, string key, int line);
+	void insert(struct TrieNode* root, string key, struct Pair* p);
 	bool search(struct TrieNode* root, string key);
-	void showlist(list<int> g);
+	void showlist(list<Pair*> g);
 	void searchLine(struct TrieNode* root, string key);
 	bool isEmpty(TrieNode* root);
 	void readWords(string line, int linea, TrieNode* root);
 	void abrirArchivo(string archivo, TrieNode* root);
+	struct Pair* getPair(int line, int posInLine);
+	string aMinuscula(string cadena);
 };
 
 #endif // TRIE_H

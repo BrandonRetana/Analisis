@@ -10,14 +10,21 @@ const int ALPHABET_SIZE = 26;
 Trie::Trie(){
     setlocale(LC_ALL, "spanish");
 }
+
+struct Pair
+{
+    int line = 0;
+    int posInLine = 0;
+};
 // trie node
 struct TrieNode {
 	struct TrieNode* children[ALPHABET_SIZE];
-    list<int> positions;
+    list<Pair*> positions;
 	// isEndOfWord is true if the node represents
 	// end of a word
 	bool isEndOfWord;
 };
+
 
 // Returns new trie node (initialized to NULLs)
 struct TrieNode* Trie::getNode(void)
@@ -32,10 +39,17 @@ struct TrieNode* Trie::getNode(void)
 	return pNode;
 }
 
+struct Pair* Trie::getPair(int line, int posInLine){
+    struct Pair* pPair = new Pair;
+    pPair->line = line;
+    pPair->posInLine = posInLine;
+    return pPair;
+}
+
 // If not present, inserts key into trie
 // If the key is prefix of trie node, just
 // marks leaf node
-void Trie::insert(struct TrieNode* root, string key, int line)
+void Trie::insert(struct TrieNode* root, string key, Pair* p)
 {
 	struct TrieNode* pCrawl = root;
 
@@ -49,7 +63,7 @@ void Trie::insert(struct TrieNode* root, string key, int line)
 
 	// mark last node as leaf
 	pCrawl->isEndOfWord = true;
-    pCrawl->positions.push_back(line);
+    pCrawl->positions.push_back(p);
 }
 
 // Returns true if key presents in trie, else
@@ -69,16 +83,24 @@ bool Trie::search(struct TrieNode* root, string key)
 	return (pCrawl != NULL && pCrawl->isEndOfWord);
 }
 
-void Trie::showlist(list<int> g)
+void Trie::showlist(list<Pair*> g)
 {
-    list<int>::iterator it;
-    for (it = g.begin(); it != g.end(); ++it)
-        cout << *it<<", ";
+    list<Pair*>::iterator it;
+    for (it = g.begin(); it != g.end(); ++it){
+        Pair* p = *it;
+        cout<<"("<<p->line<<", "<<p->posInLine<<")";
+    }
     cout << '\n';
+}
+
+string Trie::aMinuscula(string cadena) {
+  for (int i = 0; i < cadena.length(); i++) cadena[i] = tolower(cadena[i]);
+  return cadena;
 }
 
 void Trie::searchLine(struct TrieNode* root, string key)
 {
+    key = aMinuscula(key);
 	struct TrieNode* pCrawl = root;
 
 	for (int i = 0; i < key.length(); i++) {
@@ -113,13 +135,13 @@ void Trie::readWords(string line, int linea, TrieNode* root){
             int ascii = int(character);
             if (!((ascii>=97 && ascii<=122) || character == int('ñ') || character == int('á') || character == int('é') || character == int('í') || character == int('ó') || character == int('ú')|| character == int('ü'))){
                 if (!(word == "")){
-                    insert(root, word, linea);
+                    insert(root, word, getPair(linea, posInLine-word.length()));
                 }
                     word = "";
             } else {
                 word+=character;
             }
-            
+            posInLine++;
         }
     }
 
