@@ -1,8 +1,4 @@
-#include <bits/stdc++.h>
-#include<list>
-#include<string>
-#include "Trie.h"
-#include <locale.h>
+#include "dependencies.h"
 using namespace std;
 
 const int ALPHABET_SIZE = 26;

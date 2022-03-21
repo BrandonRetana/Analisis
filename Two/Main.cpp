@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-#include "Trie.h"
-#include <locale.h>
+#include "dependencies.h"
 using namespace std;
 
 Trie *trie = new Trie();

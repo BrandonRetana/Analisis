@@ -1,7 +1,6 @@
 #ifndef TRIE_H
 #define TRIE_H
-#include<string>
-#include<list>
+
 using namespace std;
 class Trie{
 
