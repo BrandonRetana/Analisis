@@ -1,141 +1,20 @@
 #ifndef TRIE_H
 #define TRIE_H
-// C++ implementation of delete
-// operations on Trie
-#include <bits/stdc++.h>
+#include<string>
+#include<list>
 using namespace std;
+class Trie{
 
-const int ALPHABET_SIZE = 26;
-
-// trie node
-struct TrieNode {
-	struct TrieNode* children[ALPHABET_SIZE];
-    list<int> positions;
-	// isEndOfWord is true if the node represents
-	// end of a word
-	bool isEndOfWord;
+public:
+	Trie();
+    struct TrieNode* getNode(void);
+	void insert(struct TrieNode* root, string key, int line);
+	bool search(struct TrieNode* root, string key);
+	void showlist(list<int> g);
+	void searchLine(struct TrieNode* root, string key);
+	bool isEmpty(TrieNode* root);
+	void readWords(string line, int linea, TrieNode* root);
+	void abrirArchivo(string archivo, TrieNode* root);
 };
 
-// Returns new trie node (initialized to NULLs)
-struct TrieNode* getNode(void)
-{
-	struct TrieNode* pNode = new TrieNode;
-
-	pNode->isEndOfWord = false;
-
-	for (int i = 0; i < ALPHABET_SIZE; i++)
-		pNode->children[i] = NULL;
-
-	return pNode;
-}
-
-// If not present, inserts key into trie
-// If the key is prefix of trie node, just
-// marks leaf node
-void insert(struct TrieNode* root, string key, int line)
-{
-	struct TrieNode* pCrawl = root;
-
-	for (int i = 0; i < key.length(); i++) {
-		int index = key[i] - 'a';
-		if (!pCrawl->children[index])
-			pCrawl->children[index] = getNode();
-
-		pCrawl = pCrawl->children[index];
-	}
-
-	// mark last node as leaf
-	pCrawl->isEndOfWord = true;
-    pCrawl->positions.push_back(line);
-}
-
-// Returns true if key presents in trie, else
-// false
-bool search(struct TrieNode* root, string key)
-{
-	struct TrieNode* pCrawl = root;
-
-	for (int i = 0; i < key.length(); i++) {
-		int index = key[i] - 'a';
-		if (!pCrawl->children[index])
-			return false;
-
-		pCrawl = pCrawl->children[index];
-	}
-
-	return (pCrawl != NULL && pCrawl->isEndOfWord);
-}
-
-void showlist(list<int> g)
-{
-    list<int>::iterator it;
-    for (it = g.begin(); it != g.end(); ++it)
-        cout << *it<<", ";
-    cout << '\n';
-}
-
-void searchLine(struct TrieNode* root, string key)
-{
-	struct TrieNode* pCrawl = root;
-
-	for (int i = 0; i < key.length(); i++) {
-		int index = key[i] - 'a';
-		if (!pCrawl->children[index])
-			return;
-
-		pCrawl = pCrawl->children[index];
-	}
-    if (pCrawl != NULL && pCrawl->isEndOfWord) {
-        showlist(pCrawl->positions);
-    }
-}
-
-// Returns true if root has no children, else false
-bool isEmpty(TrieNode* root)
-{
-	for (int i = 0; i < ALPHABET_SIZE; i++)
-		if (root->children[i])
-			return false;
-	return true;
-}
-
-// Recursive function to delete a key from given Trie
-TrieNode* remove(TrieNode* root, string key, int depth = 0)
-{
-	// If tree is empty
-	if (!root)
-		return NULL;
-
-	// If last character of key is being processed
-	if (depth == key.size()) {
-
-		// This node is no more end of word after
-		// removal of given key
-		if (root->isEndOfWord)
-			root->isEndOfWord = false;
-
-		// If given is not prefix of any other word
-		if (isEmpty(root)) {
-			delete (root);
-			root = NULL;
-		}
-
-		return root;
-	}
-
-	// If not last character, recur for the child
-	// obtained using ASCII value
-	int index = key[depth] - 'a';
-	root->children[index] =
-		remove(root->children[index], key, depth + 1);
-
-	// If root does not have any child (its only child got
-	// deleted), and it is not end of another word.
-	if (isEmpty(root) && root->isEndOfWord == false) {
-		delete (root);
-		root = NULL;
-	}
-
-	return root;
-}
 #endif // TRIE_H
