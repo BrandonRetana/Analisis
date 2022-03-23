@@ -41,9 +41,10 @@ void printArray(int arr[], int n) {
 	cout<<endl;
 }
 
+/*
 int main() {
 	int arr[] = {2,9,0,1,6};
 	quicksort(arr, 0, 4);
 	printArray(arr, 5);
 }
-
+*/

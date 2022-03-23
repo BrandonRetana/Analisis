@@ -6,7 +6,7 @@
 #include <bits/stdc++.h>
 #include <locale.h>
 #include "Trie.h"
-#include "QuickSort.h"
+//#include "QuickSort.h"
 
 
 using namespace std;
