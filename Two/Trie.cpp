@@ -12,17 +12,13 @@ struct Pair
     int line = 0;
     int posInLine = 0;
 };
-// trie node
 struct TrieNode {
 	struct TrieNode* children[ALPHABET_SIZE];
     list<Pair*> positions;
-	// isEndOfWord is true if the node represents
-	// end of a word
 	bool isEndOfWord;
 };
 
 
-// Returns new trie node (initialized to NULLs)
 struct TrieNode* Trie::getNode(void)
 {
 	struct TrieNode* pNode = new TrieNode;
@@ -42,9 +38,6 @@ struct Pair* Trie::getPair(int line, int posInLine){
     return pPair;
 }
 
-// If not present, inserts key into trie
-// If the key is prefix of trie node, just
-// marks leaf node
 void Trie::insert(struct TrieNode* root, string key, Pair* p)
 {
 	struct TrieNode* pCrawl = root;
@@ -57,13 +50,10 @@ void Trie::insert(struct TrieNode* root, string key, Pair* p)
 		pCrawl = pCrawl->children[index];
 	}
 
-	// mark last node as leaf
 	pCrawl->isEndOfWord = true;
     pCrawl->positions.push_back(p);
 }
 
-// Returns true if key presents in trie, else
-// false
 bool Trie::search(struct TrieNode* root, string key)
 {
 	struct TrieNode* pCrawl = root;
@@ -113,7 +103,6 @@ void Trie::searchLine(struct TrieNode* root, string key)
     }
 }
 
-// Returns true if root has no children, else false
 bool Trie::isEmpty(TrieNode* root)
 {
 	for (int i = 0; i < ALPHABET_SIZE; i++)

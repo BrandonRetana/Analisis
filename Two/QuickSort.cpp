@@ -20,7 +20,7 @@ int partition(int arr[], int low, int high) {
 	return i+1;
 }
 
-int randomPartiton(int arr[], int low, int high) {
+int pivotSelection(int arr[], int low, int high) {
 	int i = low;
 	swap(arr, i, high);
 	return partition(arr, low, high);
@@ -28,7 +28,7 @@ int randomPartiton(int arr[], int low, int high) {
 
 void quicksort(int arr[], int low, int high) {
 	if (low < high) {
-		int q = randomPartiton(arr, low, high);
+		int q = pivotSelection(arr, low, high);
 		quicksort(arr, low, q-1);
 		quicksort(arr, q+1,high);
 	}
