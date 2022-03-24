@@ -65,7 +65,7 @@ int main() {
 		}
 
 		cout<<"Pruebas del freetext, se realizaran 4 pruebas con diferentes sizes del patron de las letras, deido a que esta construido con un arbol Trie, su taza de crecimiento es de O(n) siendo el n el size del patron de letras"<<endl;
-		trie->abrirArchivo("WarPeace.txt", root);
+		trie->abrirArchivo("WarPeaceM.txt", root);
 
 		t0 = clock();
 		trie->searchLine(root, "Prince");
