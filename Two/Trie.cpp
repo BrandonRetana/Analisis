@@ -16,6 +16,7 @@ struct TrieNode {
 	struct TrieNode* children[ALPHABET_SIZE];
     list<Pair*> positions;
 	bool isEndOfWord;
+    int cont = 0;
 };
 
 
@@ -47,10 +48,12 @@ void Trie::insert(struct TrieNode* root, string key, Pair* p)
 		if (!pCrawl->children[index])
 			pCrawl->children[index] = getNode();
 
+        pCrawl->cont++;
+        pCrawl->positions.push_back(p);
 		pCrawl = pCrawl->children[index];
 	}
-
 	pCrawl->isEndOfWord = true;
+    pCrawl->cont++;
     pCrawl->positions.push_back(p);
 }
 
@@ -91,16 +94,17 @@ void Trie::searchLine(struct TrieNode* root, string key)
 
 	for (int i = 0; i < key.length(); i++) {
 		int index = key[i] - 'a';
-		if (!pCrawl->children[index]){
-            cout<<"Word not found! "<<endl;
+        if (!pCrawl->children[index]){
+            cout<<"Esta secuencia de letras no existe"<<endl;
             return;
         }
-
 		pCrawl = pCrawl->children[index];
 	}
-    if (pCrawl != NULL && pCrawl->isEndOfWord) {
-        showlist(pCrawl->positions);
+    if (pCrawl != NULL) {
+        cout<<"Esta secuencia de letras aparece: "<<pCrawl->cont<<endl;
+        //showlist(pCrawl->positions);
     }
+    
 }
 
 bool Trie::isEmpty(TrieNode* root)
