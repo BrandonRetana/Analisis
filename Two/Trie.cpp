@@ -1,7 +1,7 @@
 #include "Dependencies.h"
 using namespace std;
 
-const int ALPHABET_SIZE = 26;
+const int ALPHABET_SIZE = 100;
 
 Trie::Trie(){
     setlocale(LC_ALL, "spanish");
