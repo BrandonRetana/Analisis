@@ -4,11 +4,11 @@
 class QuickSort
 {
 public:
-void swap(int* a, int* b);
+void swap(int arr[], int i, int j);
 int partition (int arr[], int low, int high);
-void quickSort(int arr[], int low, int high);
+void quicksort(int arr[], int low, int high, int pivot);
 void printArray(int arr[], int size);
-void sort(int arr[], int n);
+int pivotSelection(int arr[], int low, int high, int pivot);
 QuickSort();
 };
 

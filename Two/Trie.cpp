@@ -1,4 +1,4 @@
-#include "dependencies.h"
+#include "Dependencies.h"
 using namespace std;
 
 const int ALPHABET_SIZE = 26;
