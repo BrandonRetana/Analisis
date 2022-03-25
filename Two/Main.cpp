@@ -29,7 +29,6 @@ int main() {
 	int arr[15000];
 	unsigned t0,t1 = 0;
 	double oldTime, oldTeoric;
-	setlocale(LC_ALL, "spanish");
 	cout<<"Quicksort 10 pruebas con pivote fijo en la primera posicion, 10 con pivote random, 10 con pivote fijo en la ultima posicion con arreglo random\ncrecimiento teorico de n*log(n)"<<endl;
 
 	for(int i = 1; i <= 3; i++){
@@ -68,7 +67,7 @@ int main() {
 		trie->abrirArchivo("WarPeaceM.txt", root);
 
 		t0 = clock();
-		trie->searchLine(root, "Prince");
+		trie->freeText(root, "Prince");
 		t1 = clock();
 		double time = (double(t1-t0)/CLOCKS_PER_SEC);
 		double teoric = 23;
@@ -77,7 +76,7 @@ int main() {
 		oldTeoric = teoric;
 
 		t0 = clock();
-		trie->searchLine(root, "floccinaucinihilipilification");
+		trie->freeText(root, "floccinaucinihilipilification");
 		t1 = clock();
 		time = (double(t1-t0)/CLOCKS_PER_SEC);
 		teoric = 29;
@@ -87,7 +86,7 @@ int main() {
 
 
 		t0 = clock();
-		trie->searchLine(root, "pseudopseudohypoparathyroidism");
+		trie->freeText(root, "pseudopseudohypoparathyroidism");
 		t1 = clock();
 		time = (double(t1-t0)/CLOCKS_PER_SEC);
 		teoric = 30;
@@ -96,7 +95,7 @@ int main() {
 		oldTeoric = teoric;
 
 		t0 = clock();
-		trie->searchLine(root, "pneumonoultramicroscopicsilicovolcanoconiosis");
+		trie->freeText(root, "pneumonoultramicroscopicsilicovolcanoconiosis");
 		t1 = clock();
 		time = (double(t1-t0)/CLOCKS_PER_SEC);
 		teoric = 45;

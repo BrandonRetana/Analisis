@@ -1,10 +1,10 @@
 #include "Dependencies.h"
 using namespace std;
 
-const int ALPHABET_SIZE = 100;
+const int ALPHABET_SIZE = 26;
 
 Trie::Trie(){
-    setlocale(LC_ALL, "spanish");
+
 }
 
 struct Pair
@@ -87,7 +87,7 @@ string Trie::aMinuscula(string cadena) {
   return cadena;
 }
 
-void Trie::searchLine(struct TrieNode* root, string key)
+void Trie::freeText(struct TrieNode* root, string key)
 {
     key = aMinuscula(key);
 	struct TrieNode* pCrawl = root;
@@ -122,7 +122,7 @@ void Trie::readWords(string line, int linea, TrieNode* root){
     for (char character: line) {
             character = tolower(character);
             int ascii = int(character);
-            if (!((ascii>=97 && ascii<=122) || character == int('ñ') || character == int('á') || character == int('é') || character == int('í') || character == int('ó') || character == int('ú')|| character == int('ü'))){
+            if (!((ascii>=97 && ascii<=122))){
                 if (!(word == "")){
                     insert(root, word, getPair(linea, posInLine-word.length()));
                 }

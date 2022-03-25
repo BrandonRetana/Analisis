@@ -10,7 +10,7 @@ public:
 	void insert(struct TrieNode* root, string key, struct Pair* p);
 	bool search(struct TrieNode* root, string key);
 	void showlist(list<Pair*> g);
-	void searchLine(struct TrieNode* root, string key);
+	void freeText(struct TrieNode* root, string key);
 	bool isEmpty(TrieNode* root);
 	void readWords(string line, int linea, TrieNode* root);
 	void abrirArchivo(string archivo, TrieNode* root);
